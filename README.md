@@ -12,6 +12,27 @@ This project implements a **statistically-driven machine learning pipeline** for
 The system predicts flight prices using a comprehensive set of features including airline, route, timing, duration, and seasonality factors. The model achieves **83.4% explained variance (R²)** with an RMSE of 0.209 on log-transformed prices, demonstrating strong predictive performance across diverse flight scenarios.
 
 After initial experimentation and EDA in notebooks, python modules were created using scikit-learn encoder and pipeline objects to mimic real life production-style workflows.
+```python
+pipeline = Pipeline([
+        ('feature_engineering', FeatureEngineeringEncoder()),
+        ('feature_selector', FeatureSelector()),
+        ('one_hot_encoder', OneHotEncoder()),
+        ('target_encoder', TargetEncoder()),
+        ('model', GradientBoostingRegressor(
+            n_estimators=200,
+            learning_rate=0.1,
+            max_depth=5,
+            random_state=42
+            )
+        )
+    ])
+
+# Train pipeline object 
+pipeline = create_flight_price_pipeline()
+pipeline.fit(X_train, y_train)
+y_pred_train = pipeline.predict(X_train)
+y_pred_test = pipeline.predict(X_test)
+```
 
 ### Key Differentiators
 
