@@ -4,10 +4,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-
-# Import your custom encoder classes
 from feature_engineering_encoder import FeatureEngineeringEncoder
 from feature_selector_encoder import FeatureSelector
 from target_encoder import TargetEncoder
@@ -215,16 +211,9 @@ def main():
     """
     
     try:
-        # Step 1: Load and prepare data
         X, y = load_data()
-        
-        # Step 2: Train and evaluate pipeline
         pipeline, results = train_and_evaluate_pipeline(X, y)
-        
-        # Step 3: Cross-validation
         cv_scores = cross_validate_pipeline(X, y)
-        
-        # Step 4: Save trained pipeline
         save_pipeline(pipeline)
         
         print("\nPipeline training and evaluation completed successfully!")
